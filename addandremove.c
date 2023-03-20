@@ -12,27 +12,10 @@ int addAndRemove(State *state){
     while(!GetInputInt("Enter cardnumber: ", &cardNr))
         printf("Please enter a number\n");
 
-    Card *card = searchCardNr(state, cardNr);  // RETURNERA CARD PEKARE ISTÄLLET
+    Card *card = searchCardNr(state, cardNr);  
 
-    //printf("TEST::::%d", &card->cardNr);
-
-    if(card != NULL){           // LÄGG I FUNC
-
-        if(card->access == true)
-            printf("This card has access\n");
-        else
-            printf("This card has No access\n");
-
-        int changeAccess;
-        while(!GetInputInt("Enter 1 for access, 2 for no access ", &changeAccess) || (changeAccess != 1 && changeAccess != 2))
-            printf("Please enter 1 or 2\n");
-
-        if(changeAccess == 1){
-            card->access = true;
-        }
-        else if(changeAccess == 2)   
-            card->access = false;
-
+    if(card != NULL){          
+        foundCard(card);
         return 0; 
     }
         
@@ -42,7 +25,7 @@ int addAndRemove(State *state){
     else
         state->cards = (Card *)realloc(state->cards, state->nrOfCards * sizeof(Card));
     
-    state->cards[state->nrOfCards-1].cardNr = cardNr;  // FUNC FÖR ATT SKAPA CARD ISTÄLLET
+    state->cards[state->nrOfCards-1].cardNr = cardNr;  
     state->cards[state->nrOfCards-1].access = true;
     setDate(state);
      
@@ -66,5 +49,23 @@ void setDate(State *state){
     strftime (buff, 100, "%d-%m-%Y ", &now_t);
 
     strcpy(state->cards[state->nrOfCards-1].date, buff);    
+}
+
+void foundCard(Card* card){
+
+    if(card->access == true)
+            printf("This card has access\n");
+        else
+            printf("This card has No access\n");
+
+    int changeAccess;
+    while(!GetInputInt("Enter 1 for access, 2 for no access ", &changeAccess) || (changeAccess != 1 && changeAccess != 2))
+        printf("Please enter 1 or 2\n");
+
+        if(changeAccess == 1){
+            card->access = true;
+        }
+        else if(changeAccess == 2)   
+            card->access = false;
 }
 

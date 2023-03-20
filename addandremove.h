@@ -10,10 +10,12 @@ typedef struct {
 typedef struct {
     Card *cards;
     int nrOfCards;
+    bool lamp;
 } State;
 
 
 int addAndRemove(State *state);
 Card* searchCardNr(const State *state, int cardNr);
+void foundCard(Card* card);
 
 #endif
