@@ -4,12 +4,12 @@
 #include "remote.h"
 
 
-void remote(State *state){
+void remote(bool *lamp){
 
-    state->lamp = true;
-    if(state->lamp == true)
+    *lamp = true;
+    if(*lamp == true)
         printf("CURRENTLY LAMP IS GREEN\n");
     
     sleep(3);
-    state->lamp = false;
+    *lamp = false;
 }

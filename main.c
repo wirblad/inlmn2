@@ -7,7 +7,7 @@
 
 int main(){
 
-typedef struct {
+/*typedef struct {
     int cardNr;
     bool access;
     char date[100];
@@ -17,37 +17,27 @@ typedef struct {
     Card *cards;
     int nrOfCards;
     bool lamp;
-} State;
+} State;*/
 
-
-State state = {NULL, 0, false};
-
-//readNrOfCardsFromFile(&state);
-//readAllCardsFromFile(&state);
+bool lamp = false;
 
     while(true){
 
         int menyChoice = menu();
-    
         if(menyChoice == 1)
-            remote(&state);
+            remote(&lamp);
         else if(menyChoice == 2){
             noheap();
-            //merge files
-            //clear cardTemp
         }
-            //listAllCards(&state);
-        else if(menyChoice == 3)
+        else if(menyChoice == 3){
             addAndRemove2();
-            //merge files
-            //clear cardTemp
-            //addAndRemove(&state);
+            mergeFiles();
+            FILE *f1=fopen("cardTemp.ini", "w");  // clear the temp file
+            fclose(f1);
+        }
         else if(menyChoice == 4)
             break;
         else if(menyChoice == 9)
-            fakeScan(&state);
+            fakeScan();
     }
-//saveNrOfCardsToFile(&state);
-//saveAllCardsToFile(&state);
-
 }

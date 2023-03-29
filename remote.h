@@ -3,6 +3,6 @@
 
 #include "addandremove.h"
 
-void remote(State *state);
+void remote(bool *lamp);
 
 #endif

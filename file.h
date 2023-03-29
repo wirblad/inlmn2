@@ -7,6 +7,7 @@ void saveNrOfCardsToFile(State *state);
 void readNrOfCardsFromFile(const State *state);
 void readAllCardsFromFile(State *state);
 void saveAllCardsToFile(State *state);
+void mergeFiles();
 
 
 #endif

@@ -3,6 +3,6 @@
 
 #include "addandremove.h"
 
-void fakeScan(State *state);
+void fakeScan();
 
 #endif
