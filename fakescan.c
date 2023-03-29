@@ -9,9 +9,9 @@
 void fakeScan(State *state){
 
     int cardNr;
-    while(GetInputInt("Please scan card to enter or X(ANY CHAR) to go back to admin menu\n", &cardNr)){
+    //while(GetInputInt("Please scan card to enter or X(ANY CHAR) to go back to admin menu\n", &cardNr)){
 
-    Card *card = searchCardNr(state, cardNr);
+    /*Card *card = searchCardNr(state, cardNr);
 
         if(card != NULL){          
             if(card->access == false){
@@ -25,5 +25,6 @@ void fakeScan(State *state){
         }
         else
             printf("COULD NOT FIND CARD\n");
-    }
+    }*/
+
 }

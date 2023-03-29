@@ -22,8 +22,8 @@ typedef struct {
 
 State state = {NULL, 0, false};
 
-readNrOfCardsFromFile(&state);
-readAllCardsFromFile(&state);
+//readNrOfCardsFromFile(&state);
+//readAllCardsFromFile(&state);
 
     while(true){
 
@@ -31,16 +31,23 @@ readAllCardsFromFile(&state);
     
         if(menyChoice == 1)
             remote(&state);
-        else if(menyChoice == 2)
-            listAllCards(&state);
+        else if(menyChoice == 2){
+            noheap();
+            //merge files
+            //clear cardTemp
+        }
+            //listAllCards(&state);
         else if(menyChoice == 3)
-            addAndRemove(&state);
+            addAndRemove2();
+            //merge files
+            //clear cardTemp
+            //addAndRemove(&state);
         else if(menyChoice == 4)
             break;
         else if(menyChoice == 9)
             fakeScan(&state);
     }
-saveNrOfCardsToFile(&state);
-saveAllCardsToFile(&state);
+//saveNrOfCardsToFile(&state);
+//saveAllCardsToFile(&state);
 
 }

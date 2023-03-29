@@ -5,7 +5,8 @@
 #include <string.h>
 #include "addandremove.h"
 #include "safeinput.h"
-
+#include "noheap.h"
+/*
 int addAndRemove(State *state){
 
     int cardNr;
@@ -68,4 +69,19 @@ void foundCard(Card* card){
         else if(changeAccess == 2)   
             card->access = false;
 }
+
+*/
+
+void addAndRemove2(){
+
+    int cardNr;
+    while(!GetInputInt("Enter cardnumber: ", &cardNr))
+        printf("Please enter a number\n");
+    Card2 card;
+    ReadIniFileWithCallback("server.ini",iniValueCallback, &card, cardNr);
+
+}
+
+
+
 
