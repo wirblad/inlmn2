@@ -1,14 +1,9 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdbool.h>
+#include <time.h>
 #include "noheap.h"
 #include "safeinput.h"
-
-/*typedef struct {
-    char cardNr[100];
-    char access[100];
-    char date[100];
-} Card2;*/
 
 #define MATCH(s, n) strcmp(section, s) == 0 && strcmp(key, n) == 0
 
@@ -16,7 +11,6 @@ void noheap(){
     Card2 card;
     ReadIniFileWithCallbackOnlyList("server.ini",iniValueCallbackOnlyList, &card);
 }
-
 
 void removeChar(char *str, char garbage) {
 
@@ -70,9 +64,11 @@ void ReadIniFileWithCallback(const char *fileName,void(*func)(const char *, cons
         char str[100];
         sprintf(str, "%d", cardNr); 
         Card2* card;
+        char buff[100];
+        setDate(buff);
         strcpy(card->cardNr, str);
         strcpy(card->access, "yes");
-        strcpy(card->date, "010101");
+        strcpy(card->date, buff);
         writeStructtoFile(card);
     }
     fclose(f);
@@ -154,8 +150,7 @@ void iniValueCallbackOnlyList(const char *section, const char *key, const char *
     if (MATCH("Card", "date")) {
         strcpy(pConfig->date, value);
         printf("Date added:  %s\n", pConfig->date);
-    }
-   
+    }  
 }
 
 void ReadIniFileWithCallbackGetStruct(const char *fileName,void(*func)(const char *, const char *, const char *, void *, int, bool *, Card2*), void *payload, int cardNr, Card2* getCard){
@@ -184,15 +179,7 @@ void ReadIniFileWithCallbackGetStruct(const char *fileName,void(*func)(const cha
         func((const char *)currentGroup,(const char *)value, (const char *)part+1,payload,cardNr,&foundCardnr, getCard);
     }
     if(foundCardnr == false){
-        printf("COULDN*T FIND CARD");
         getCard = NULL;
-        /*char str[100];
-        sprintf(str, "%d", cardNr); 
-        Card2* card;
-        strcpy(card->cardNr, str);
-        strcpy(card->access, "yes");
-        strcpy(card->date, "010101");
-        writeStructtoFile(card);*/
     }
     fclose(f);
 }
@@ -212,27 +199,18 @@ void iniValueCallbackGetStruct(const char *section, const char *key, const char 
         sprintf(str, "%d", cardNr); 
         if(strcmp(pConfig->cardNr,str) == 0){
             *foundCardnr = true;
-            printf("FOUND CARD");
             strcpy(getCard->cardNr,pConfig->cardNr);
             strcpy(getCard->access,pConfig->access);
             strcpy(getCard->date,pConfig->date);
-
-            //return;
         }
-            /*if(!strcmp(pConfig->access,"yes"))
-                printf("This card has access ");
-            if(!strcmp(pConfig->access,"no"))
-                printf("This card has NO access ");   
-            int choice;
-            GetInputInt("Enter 1 for access, 2 for No access: ", &choice); 
-            if(choice == 1)
-                strcpy(pConfig->access, "yes");
-            if(choice == 2)
-                strcpy(pConfig->access, "no");
-            else
-                printf("Please enter 1 or 2");
-        }
-        writeStructtoFile(pConfig);*/  
+    }
 }
+
+void setDate(char* date){
+
+    time_t now = time(0);
+    struct tm now_t = *localtime(&now);
+    strftime (date, 100, "%d-%m-%Y ", &now_t);
+
 }
 

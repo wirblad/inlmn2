@@ -22,7 +22,6 @@ typedef struct {
 bool lamp = false;
 
     while(true){
-
         int menyChoice = menu();
         if(menyChoice == 1)
             remote(&lamp);
@@ -38,6 +37,6 @@ bool lamp = false;
         else if(menyChoice == 4)
             break;
         else if(menyChoice == 9)
-            fakeScan();
+            fakeScan(&lamp);
     }
 }

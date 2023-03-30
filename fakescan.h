@@ -3,6 +3,6 @@
 
 #include "addandremove.h"
 
-void fakeScan();
+void fakeScan(bool *lamp);
 
 #endif

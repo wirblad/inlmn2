@@ -27,4 +27,6 @@ void iniValueCallbackGetStruct(const char *section, const char *key, const char 
 
 void writeStructtoFile(Card2* card);
 
+void setDate(char* date);
+
 #endif

@@ -24,8 +24,6 @@ void saveNrOfCardsToFile(State *state){
     fclose (outfile);
 }
 
-
-
 void readNrOfCardsFromFile(const State *state){
 
     FILE *infile;
@@ -86,7 +84,6 @@ void readAllCardsFromFile(State *state){
     fclose (infile);
    
 }
-
 
 
 void mergeFiles(){
