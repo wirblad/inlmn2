@@ -178,9 +178,9 @@ void ReadIniFileWithCallbackGetStruct(const char *fileName,void(*func)(const cha
         value[index] = 0;
         func((const char *)currentGroup,(const char *)value, (const char *)part+1,payload,cardNr,&foundCardnr, getCard);
     }
-    if(foundCardnr == false){
-        getCard = NULL;
-    }
+    if(foundCardnr == false)
+        strcpy(getCard->access, "NOFIND");
+        
     fclose(f);
 }
 

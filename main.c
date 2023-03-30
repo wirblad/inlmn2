@@ -7,18 +7,6 @@
 
 int main(){
 
-/*typedef struct {
-    int cardNr;
-    bool access;
-    char date[100];
-} Card;
-
-typedef struct {
-    Card *cards;
-    int nrOfCards;
-    bool lamp;
-} State;*/
-
 bool lamp = false;
 
     while(true){

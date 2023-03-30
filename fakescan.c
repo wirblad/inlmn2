@@ -10,11 +10,13 @@
 void fakeScan(bool *lamp){
 
     int cardNr;
+    Card2 card;
+    Card2 getCard;
+
     while(GetInputInt("Please scan card to enter or X(ANY CHAR) to go back to admin menu\n", &cardNr)){
-        Card2 card;
-        Card2 getCard;
-        ReadIniFileWithCallbackGetStruct("server.ini",iniValueCallbackGetStruct, &card,cardNr, &getCard);
         
+        ReadIniFileWithCallbackGetStruct("server.ini",iniValueCallbackGetStruct, &card,cardNr, &getCard);
+         
         if(!strcmp(getCard.access,"no")){
             *lamp = false;
             printf("CURRENTLY LAMP IS RED\n");
@@ -23,8 +25,9 @@ void fakeScan(bool *lamp){
             *lamp = true;
             printf("CURRENTLY LAMP IS GREEN\n");
         }
-        *lamp = false;
-        printf("DIDN*T FIND CARD, TRY AGAIN\n");
+        if(!strcmp(getCard.access,"NOFIND")){ 
+            printf("NO SUCH CARD IN SYSTEM, TRY AGAIN\n");
+        }
         
     }
 }
